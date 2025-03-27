@@ -106,6 +106,36 @@
         <h2 class="text-center my-5 title-text">
             <i class="fas fa-cogs me-2"></i>Netomi Service Configuration Dashboard
         </h2>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-header {
+            background: linear-gradient(to right, #007bff, #0056b3);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            gap: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header class="custom-header">
+        <a href="http://127.0.0.1:5000"  class="link-light" style="margin-right: 20px;">Home</a>
+        <a href="http://127.0.0.1:5000/home"  class="link-light" style="margin-right: 20px;">Dev1</a>
+        <a href="http://127.0.0.1:5000/home"  class="link-light" style="margin-right: 20px;">QA</a>
+        <a href="http://127.0.0.1:5000/home"  class="link-light" style="margin-right: 20px;">QAinternal</a>
+        <a href="http://127.0.0.1:5000/home"  class="link-light" style="margin-right: 20px;">Usprod</a>
+        <a href="http://127.0.0.1:5000/home"  class="link-light" style="margin-right: 20px;">Sgprod</a>
+        <a href="http://127.0.0.1:5000/home"  class="link-light" style="margin-right: 20px;">Euprod</a>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+        <p></p>
+
         <form method="POST" class="mb-4">
             <div class="input-group">
                 <input type="text" name="service_name" class="form-control" placeholder="Enter Service Name" value="{{ service_name }}">
