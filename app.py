@@ -3,8 +3,8 @@ import requests
 
 app = Flask(__name__)
 
-API_URL = "http://qa-configs.internal.netomi.com/v1/service/configuration/get"
-API_URL2 = "http://configmanager-dev1.internal.netomi.com/v1/service/configuration/get"
+API_URL = ""
+API_URL2 = ""
 HEADERS = {"Content-Type": "application/json"}
 
 @app.route('/', methods=['GET', 'POST'])
