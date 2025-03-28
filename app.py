@@ -34,7 +34,7 @@ def index():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    service_name = "ds-gateway-app"  # Default service name
+    service_name = ""  # Default service name
     data = {}
 
     if request.method == 'POST':
