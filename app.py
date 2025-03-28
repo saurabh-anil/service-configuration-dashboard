@@ -9,11 +9,11 @@ HEADERS = {"Content-Type": "application/json"}
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    service_name = "ds-gateway-app"  # Default service name
+    service_name = ""  # Default service name
     data = {}
 
     if request.method == 'POST':
-        service_name = request.form.get('service_name', service_name)  # Get user input
+        service_name = request.form.get("dropdown")  # Get user input
 
     payload = {
         "serviceName": service_name,
@@ -38,7 +38,7 @@ def home():
     data = {}
 
     if request.method == 'POST':
-        service_name = request.form.get('service_name', service_name)  # Get user input
+        service_name = request.form.get("dropdown")  # Get user input
 
     payload = {
         "serviceName": service_name,
