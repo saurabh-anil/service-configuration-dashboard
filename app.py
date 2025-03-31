@@ -3,8 +3,8 @@ import requests
 
 app = Flask(__name__)
 
-API_URL = ""
-API_URL2 = ""
+API_URL = "http://us-configs.internal.netomi.com/v1/service/configuration/get"
+API_URL2 = "http://sg-configs.internal.netomi.com/v1/service/configuration/get"
 HEADERS = {"Content-Type": "application/json"}
 
 @app.route('/', methods=['GET', 'POST'])
@@ -17,7 +17,7 @@ def index():
 
     payload = {
         "serviceName": service_name,
-        "env": "qa",
+        "env": "usprod",
         "region": "us-east-1"
     }
 
@@ -42,8 +42,8 @@ def home():
 
     payload = {
         "serviceName": service_name,
-        "env": "dev1",
-        "region": "us-east-1"
+        "env": "sgprod",
+        "region": "ap-southeast-1"
     }
 
     try:
