@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, jsonify
+import logging
 import requests
 
 app = Flask(__name__)
+
+logging.basicConfig(level=logging.INFO)  
+app.logger.info("Flask application is starting...")
 
 API_URL = "http://us-configs.internal.netomi.com/v1/service/configuration/get"
 API_URL2 = "http://sg-configs.internal.netomi.com/v1/service/configuration/get"
@@ -9,7 +13,8 @@ HEADERS = {"Content-Type": "application/json"}
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    service_name = ""  # Default service name
+    app.logger.info("Home route accessed")
+    service_name = "aistudio"  # Default service name
     data = {}
 
     if request.method == 'POST':
@@ -34,7 +39,7 @@ def index():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    service_name = ""  # Default service name
+    service_name = "aistudio"  # Default service name
     data = {}
 
     if request.method == 'POST':

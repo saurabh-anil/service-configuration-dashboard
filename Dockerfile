@@ -1,12 +1,19 @@
-# syntax=docker/dockerfile:1
+# Use official lightweight Python image
+FROM python:3.11.8-slim
 
-FROM python:3.8-slim-buster
+# Set working directory inside the container
+WORKDIR /app
 
-WORKDIR /python-docker
+# Copy and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-
+# Copy application files
 COPY . .
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+# Ensure logs are unbuffered so they appear in `docker logs`
+ENV PYTHONUNBUFFERED=1
+EXPOSE 8000
+
+# Run Gunicorn with proper logging
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "--access-logfile", "-", "--error-logfile", "-", "--log-level", "info", "main:app"]
