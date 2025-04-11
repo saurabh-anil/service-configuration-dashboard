@@ -9,6 +9,7 @@ app.logger.info("Flask application is starting...")
 
 API_URL = "http://us-configs.internal.netomi.com/v1/service/configuration/get"
 API_URL2 = "http://sg-configs.internal.netomi.com/v1/service/configuration/get"
+API_URL3 = "http://configmanager-dev1.internal.netomi.com/v1/service/configuration/get"
 HEADERS = {"Content-Type": "application/json"}
 
 @app.route('/', methods=['GET', 'POST'])
@@ -53,6 +54,31 @@ def home():
 
     try:
         response = requests.post(API_URL2, json=payload, headers=HEADERS, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+    except requests.Timeout:
+        return "Error: The API request timed out. Please try again later.", 500
+    except requests.RequestException as e:
+        return f"Error: Unable to fetch data from API. {e}", 500
+
+    return render_template('index.html', data=data, service_name=service_name)
+
+@app.route('/dev1', methods=['GET', 'POST'])
+def dev1():
+    service_name = "aistudio"  # Default service name
+    data = {}
+
+    if request.method == 'POST':
+        service_name = request.form.get("dropdown")  # Get user input
+
+    payload = {
+        "serviceName": service_name,
+        "env": "dev1",
+        "region": "us-east-1"
+    }
+
+    try:
+        response = requests.post(API_URL3, json=payload, headers=HEADERS, timeout=5)
         response.raise_for_status()
         data = response.json()
     except requests.Timeout:
