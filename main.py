@@ -12,6 +12,10 @@ API_URL2 = "http://sg-configs.internal.netomi.com/v1/service/configuration/get"
 API_URL3 = "http://configmanager-dev1.internal.netomi.com/v1/service/configuration/get"
 HEADERS = {"Content-Type": "application/json"}
 
+@app.route('/healthcheck')
+def health_check():
+    return "OK", 200
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     app.logger.info("Home route accessed")
